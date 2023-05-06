@@ -26,13 +26,10 @@
 #'b_beta<-1
 #'v_beta<-2
 #'horizon<-360
-#' prchawkes(n, PSI_lambda, b_lambda, v_lambda,PSI_alpha,b_alpha, v_alpha,PSI_beta,b_beta,v_beta,horizon)
+#' prchawkes(n, PSI_lambda, b_lambda, v_lambda,
+#'           PSI_alpha,b_alpha, v_alpha,PSI_beta,b_beta,v_beta,horizon)
 
 
-source("func_secundarias.r")
-
-
-setwd()
 
 #' @export
 prchawkes<-function(n, PSI_lambda, b_lambda, v_lambda,
