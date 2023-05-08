@@ -12,4 +12,6 @@ LazyData: true
 RoxygenNote: 7.2.1
 Imports: 
     hawkes,
-    MASS
+    MASS,
+    testthat
+Config/testthat/edition: 3

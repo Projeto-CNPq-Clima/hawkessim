@@ -45,7 +45,7 @@ normalmulti<- function(x, PSI, b, v){
   SS<-gSigma(b,v,pontos_simulados)
 
   #gerando dados de uma normal multivariada
-  dados<- mvrnorm(1, media, SS)
+  dados<- MASS::mvrnorm(1, media, SS)
 
   return(dados)
 

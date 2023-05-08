@@ -44,18 +44,3 @@ prchawkes(
 \description{
 Esta é a função para simuar os dados a partir de um processo de Hawkes
 }
-\examples{
-n<-3
-PSI_lambda<-as.matrix(c(1,3,4))
-b_lambda<-1
-v_lambda<-2
-PSI_alpha<-as.matrix(c(1,3,4))
-b_alpha<-1
-v_alpha<-2
-PSI_beta<-as.matrix(c(4,5,6))
-b_beta<-1
-v_beta<-2
-horizon<-360
-prchawkes(n, PSI_lambda, b_lambda, v_lambda,
-          PSI_alpha,b_alpha, v_alpha,PSI_beta,b_beta,v_beta,horizon)
-}
