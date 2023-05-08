@@ -25,13 +25,13 @@ prchawkes<-function(n, PSI_lambda, b_lambda, v_lambda,
   pontos_simulados<-Gerarmalha(n)
 
   #incluindo intercepto
-  x<-cbind(rep(1,nn),pontos_simulados)
+  xx<-cbind(rep(1,nn),pontos_simulados)
 
 
   ##############lambda###################
 
   #Vetor W
-  W<-normalmulti(x,PSI_lambda,b_lambda,v_lambda)
+  W<-normalmulti(xx,PSI_lambda,b_lambda,v_lambda)
 
   #vetor lambda
   lambda<- exp(W)
@@ -39,7 +39,7 @@ prchawkes<-function(n, PSI_lambda, b_lambda, v_lambda,
   ##############alpha#################
 
   #Vetor M
-  M<-normalmulti(x,PSI_alpha,b_alpha,v_alpha)
+  M<-normalmulti(xx,PSI_alpha,b_alpha,v_alpha)
 
   #vetor alpha
   alpha<- exp(M)
@@ -48,7 +48,7 @@ prchawkes<-function(n, PSI_lambda, b_lambda, v_lambda,
   ###############beta##################
 
   #Vetor Q
-  Q<-normalmulti(x,PSI_beta,b_beta,v_beta)
+  Q<-normalmulti(xx,PSI_beta,b_beta,v_beta)
 
   #vetor beta
   beta<- exp(Q)

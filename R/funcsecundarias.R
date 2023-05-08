@@ -24,9 +24,9 @@ Gerarmalha <- function(nn, a = 0, b = 1) {
 
 ##################################
 #função cria a matriz de covariancia
-gSigma <- function(b, v, def) {
-  n <- nrow(def)
-  R <- exp(-b * (as.matrix(dist(def))))
+gSigma <- function(b, v, deff) {
+  n <- nrow(deff)
+  R <- exp(-b * (as.matrix(dist(deff))))
   mat <- v * R
   mat
 }
@@ -34,7 +34,6 @@ gSigma <- function(b, v, def) {
 
 #######################
 #gerando dados da normal multivariada
-
 normalmulti<- function(x, PSI, b, v){
 
   #valores necessarios para a normal multivariada
@@ -42,7 +41,7 @@ normalmulti<- function(x, PSI, b, v){
   media<- x%*%PSI
 
   #matriz de covariancia
-  SS<-gSigma(b,v,pontos_simulados)
+  SS<-gSigma(b,v,x)
 
   #gerando dados de uma normal multivariada
   dados<- MASS::mvrnorm(1, media, SS)
