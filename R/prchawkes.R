@@ -89,7 +89,7 @@ prchawkes<-function(n, PSI_lambda, b_lambda, v_lambda,
   }
 
   #retornando valores
-  res <- list(proc_hawkes, W, M, Q, x)
+  res <- list(proc_hawkes, W, M, Q, xx)
   names(res)<-c("data process","W","M","Q","X")
   return(res)
 }
