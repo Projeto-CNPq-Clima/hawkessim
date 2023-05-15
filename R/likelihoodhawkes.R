@@ -22,7 +22,7 @@ likelihoodhawkes<-function(dados2,M,W,Q,horizon){
 
     for (i in 2:(length(dadosteste))) {
 
-      termossoma[i-1]<-lambda*alpha*(sum(exp(-beta*(dadosteste[i]-dadosteste[1:(i-1)]))))
+      termossoma[i-1]<-lambda+alpha*(sum(exp(-beta*(dadosteste[i]-dadosteste[1:(i-1)]))))
 
     }
 
