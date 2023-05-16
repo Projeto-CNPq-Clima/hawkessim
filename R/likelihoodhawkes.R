@@ -12,7 +12,6 @@
 likelihoodhawkes<-function(dados2,M,W,Q,horizon){
 
   termo<-rep(0,ncol(dados2))
-  k=2
   for (k in 1:ncol(dados2)) {
     lambda<-exp(W[k])
     alpha<-exp(M[k])
