@@ -4,18 +4,16 @@
 \alias{likelihoodhawkes}
 \title{Estimação de Verossimilhança do Simulador do processo de Hawkes}
 \usage{
-likelihoodhawkes(dados2, M, W, Q, horizon)
+likelihoodhawkes(data0, lambda0, alpha0, beta0)
 }
 \arguments{
-\item{dados2}{dados do processo}
+\item{data0}{dados do processo}
 
-\item{M}{Vetor de processos Gaussianos relacionado a lambda}
+\item{lambda0}{Vetor de parâmetros do processo}
 
-\item{W}{Vetor de processos Gaussianos relacionado a alpha}
+\item{alpha0}{Vetor de parâmetros do processo}
 
-\item{Q}{Vetor de processos Gaussianos relacionado a beta}
-
-\item{horizon}{número positivo, horizonte dos dados.}
+\item{beta0}{Vetor de parâmetros do processo}
 }
 \description{
 Esta é a função para estimar a função de Verossimilhança dos dados a partir de um processo de Hawkes

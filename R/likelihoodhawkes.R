@@ -2,21 +2,20 @@
 #'
 #' Esta é a função para estimar a função de Verossimilhança dos dados a partir de um processo de Hawkes
 #'
-#' @param dados2 dados do processo
-#' @param M Vetor de processos Gaussianos relacionado a lambda
-#' @param W Vetor de processos Gaussianos relacionado a alpha
-#' @param Q Vetor de processos Gaussianos relacionado a beta
-#' @param horizon número positivo, horizonte dos dados.
+#' @param data0 dados do processo
+#' @param alpha0 Vetor de parâmetros do processo
+#' @param beta0 Vetor de parâmetros do processo
+#' @param lambda0 Vetor de parâmetros do processo
 #'
 #' @export
-likelihoodhawkes<-function(dados2,M,W,Q,horizon){
+likelihoodhawkes<-function(data0,lambda0,alpha0,beta0){
 
-  termo<-rep(0,ncol(dados2))
-  for (k in 1:ncol(dados2)) {
-    lambda<-exp(W[k])
-    alpha<-exp(M[k])
-    beta<-exp(Q[k])
-    dadosteste<-as.numeric(na.omit(dados2[,k]))
+  termo<-rep(0,ncol(data0))
+  for (k in 1:ncol(data0)) {
+    lambda<-lambda0[k]
+    alpha<-alpha0[k]
+    beta<-beta0[k]
+    dadosteste<-as.numeric(na.omit(data0[,k]))
     termossoma<-rep(0,(length(dadosteste)-1))
 
     for (i in 2:(length(dadosteste))) {
@@ -25,11 +24,14 @@ likelihoodhawkes<-function(dados2,M,W,Q,horizon){
 
     }
 
-    termo1<-sum(log(termossoma))
+    termo1<-sum(log(termossoma))+log(lambda)
 
-    termo2<-(alpha/beta)*sum(1-exp(-beta*(horizon-dadosteste)))
+    termo2<-(alpha/beta)*sum(1-exp(-beta*(dadosteste[length(dadosteste)]-dadosteste)))
 
-    termo[k]<-termo1-lambda*horizon-termo2
+    termo[k]<-termo1-lambda*dadosteste[length(dadosteste)]-termo2
   }
-  return(termo)
+  termofinal<-sum(termo)
+  return(termofinal)
 }
+
+
