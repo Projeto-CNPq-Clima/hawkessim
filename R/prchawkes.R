@@ -79,13 +79,13 @@ prchawkes<-function(n, PSI_lambda, b_lambda, v_lambda,
 
   #matriz com todos os dados simulados (cada linha é um processo de Hawkes)
   #matriz vazia com maior tamanho sendo o processo com mais dados
-  proc_hawkes<- matrix(NA,nn, ncol=maior)
+  proc_hawkes<- matrix(NA,nn, nrow=maior)
 
-  #alocando cada processo em uma linha diferente
+  #alocando cada processo em uma coluna diferente
   for (i in 1:nn) {
     x<-unlist(lista[[i]])
     tamanho<- maior-length(x)
-    proc_hawkes[i,]<-c(x,rep(NA,tamanho))
+    proc_hawkes[,i]<-c(x,rep(NA,tamanho))
   }
 
   #retornando valores

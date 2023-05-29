@@ -9,27 +9,36 @@
 #'
 #' @export
 likelihoodhawkes<-function(data0,lambda0,alpha0,beta0){
-
   termo<-rep(0,ncol(data0))
   for (k in 1:ncol(data0)) {
     lambda<-lambda0[k]
     alpha<-alpha0[k]
     beta<-beta0[k]
     dadosteste<-as.numeric(na.omit(data0[,k]))
-    termossoma<-rep(0,(length(dadosteste)-1))
 
+if(length(dadosteste)>1){
+
+    termossoma<-rep(0,(length(dadosteste)-1))
     for (i in 2:(length(dadosteste))) {
 
       termossoma[i-1]<-lambda+alpha*(sum(exp(-beta*(dadosteste[i]-dadosteste[1:(i-1)]))))
 
     }
-
     termo1<-sum(log(termossoma))+log(lambda)
 
     termo2<-(alpha/beta)*sum(1-exp(-beta*(dadosteste[length(dadosteste)]-dadosteste)))
 
     termo[k]<-termo1-lambda*dadosteste[length(dadosteste)]-termo2
-  }
+}
+    else{
+      if(length(dadosteste)==1){
+        termo[k]<-log(lambda)-lambda*dadosteste[length(dadosteste)]
+      }
+      else{
+        termo[k]<-0
+      }
+    }
+}
   termofinal<-sum(termo)
   return(termofinal)
 }
