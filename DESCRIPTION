@@ -15,3 +15,5 @@ Imports:
     MASS,
     testthat
 Config/testthat/edition: 3
+URL: https://github.com/Projeto-CNPq-Clima/hawkessim
+BugReports: https://github.com/Projeto-CNPq-Clima/hawkessim/issues
