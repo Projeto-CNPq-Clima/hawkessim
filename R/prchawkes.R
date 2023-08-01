@@ -19,7 +19,7 @@ prchawkes<-function(n, PSI_lambda, b_lambda,v_lambda,mu_alpha,b_alpha,v_alpha,
                      mu_beta,b_beta,v_beta,horizon){
 
   nn<-n^2
-mu_alpha<-matrix(mu_alpha,nrow=1)
+
   #gerar a malha de pontos simulados (que serão os dados depois - x)
   pontos_simulados<-Gerarmalha(n)
 
