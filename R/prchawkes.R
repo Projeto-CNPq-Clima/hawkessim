@@ -15,12 +15,11 @@
 #' @param horizon número positivo, horizonte dos dados.
 #'
 #' @export
-prchawkes<-function(n, PSI_lambda, b_lambda, v_lambda,
-                    PSI_alpha,b_alpha, v_alpha,
-                    PSI_beta,b_beta,v_beta,horizon){
+prchawkes<-function(n, PSI_lambda, b_lambda,v_lambda,mu_alpha,b_alpha,v_alpha,
+                     mu_beta,b_beta,v_beta,horizon){
 
   nn<-n^2
-
+mu_alpha<-matrix(mu_alpha,nrow=1)
   #gerar a malha de pontos simulados (que serão os dados depois - x)
   pontos_simulados<-Gerarmalha(n)
 
@@ -31,7 +30,7 @@ prchawkes<-function(n, PSI_lambda, b_lambda, v_lambda,
   ##############lambda###################
 
   #Vetor W
-  W<-normalmulti(xx,PSI_lambda,b_lambda,v_lambda)
+  W<-normalmulti(xx,PSI_lambda,b_lambda,v_lambda,pontos_simulados)
 
   #vetor lambda
   lambda<- exp(W)
@@ -39,7 +38,7 @@ prchawkes<-function(n, PSI_lambda, b_lambda, v_lambda,
   ##############alpha#################
 
   #Vetor M
-  M<-normalmulti(xx,PSI_alpha,b_alpha,v_alpha)
+  M<-normalmultiMQ(mu_alpha,b_alpha,v_alpha,pontos_simulados)
 
   #vetor alpha
   alpha<- exp(M)
@@ -48,7 +47,11 @@ prchawkes<-function(n, PSI_lambda, b_lambda, v_lambda,
   ###############beta##################
 
   #Vetor Q
-  Q<-normalmulti(xx,PSI_beta,b_beta,v_beta)
+  Q<-normalmultiMQ(mu_beta,b_beta,v_beta,pontos_simulados)
+
+  while (sum(exp(M)>=exp(Q))) {
+    Q<-normalmultiMQ(mu_beta,b_beta,v_beta,pontos_simulados)
+  }
 
   #vetor beta
   beta<- exp(Q)
@@ -83,9 +86,9 @@ prchawkes<-function(n, PSI_lambda, b_lambda, v_lambda,
 
   #alocando cada processo em uma coluna diferente
   for (i in 1:nn) {
-    x<-unlist(lista[[i]])
-    tamanho<- maior-length(x)
-    proc_hawkes[,i]<-c(x,rep(NA,tamanho))
+    X<-unlist(lista[[i]])
+    tamanho<- maior-length(X)
+    proc_hawkes[,i]<-c(X,rep(NA,tamanho))
   }
 
   #retornando valores
