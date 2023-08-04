@@ -1,3 +1,23 @@
+#'Algoritmo MCMC
+#'
+#' Esta é a função para realizar o algoritmo Monte Carlo via Cadeias de Markov para os parâmetros de um processo de Hawkes.
+#'
+#' @param point Malha de pontos
+#' @param xdata Matriz de dados simulados de um processo de Hawkes
+#' @param xcov Matriz de covariáveis
+#' @param iter número inteiro positivo, interações do algoritmo MCMC
+#' @param bar número inteiro positivo, período de burn-in do algoritmo MCMC
+#' @param pul número inteiro positivo, pulo nas interações do algoritmo MCMC
+#' @param AMpri,AQpri vetor de prioris A para o parâmetros M e Q, respectivamente
+#' @param BMpri,BQpri matriz de prioris B para o parâmetros M e Q, respectivamente
+#' @param AW,BW matriz de prioris B para o parâmetros PSI lambda
+#' @param avW,avM,avQ número inteiro positivo, priori do valor A do parâmetro v_lambda, v_alpha e v_beta
+#' @param bvW,bvM,bvQ número inteiro positivo, priori do valor B do parâmetro v_lambda, v_alpha e v_beta
+#' @param abW,abM,abQ número inteiro positivo, priori do valor A do parâmetro b_lambda, b_alpha e b_beta
+#' @param bbW,bbM,bbQ número inteiro positivo, priori do valor B do parâmetro b_lambda, b_alpha e b_beta
+#'
+#' @export
+
 MCMChawkes<-function(point,xdata,xcov,iter=100000,bar=90000,pul=2,AMpri=matrix(rep(1,nrow(point)),ncol=1),BMpri=100*diag(1,nrow(point)),AQpri=matrix(rep(1,nrow(point)),ncol=1),BQpri=100*diag(1,nrow(point)),AW=as.matrix(rep(0,ncol(xcov))),BW=100*diag(1,ncol(xcov)),
                      avW=1,bvW=1,avM=1,bvM=1,avQ=1,bvQ=1,abW=.01,bbW=.01,abM=.01,bbM=.01,abQ=.01,bbQ=.01){
   x<-xdata

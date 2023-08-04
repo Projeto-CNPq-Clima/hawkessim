@@ -42,5 +42,5 @@ prchawkes(
 \item{PSI_beta}{vetor de covariaveis px1}
 }
 \description{
-Esta é a função para simuar os dados a partir de um processo de Hawkes
+Esta é a função para simular os dados a partir de um processo de Hawkes
 }
