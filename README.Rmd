@@ -32,7 +32,7 @@ You can install the development version of hawkessim from [GitHub](https://githu
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("carlinhap/hawkessim")
+devtools::install_github("Projeto-CNPq-Clima/hawkessim")
 ```
 
 ## Example
