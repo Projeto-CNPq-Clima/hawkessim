@@ -27,19 +27,19 @@ prchawkes(
 
 \item{v_lambda}{número inteiro positivo, variância do parâmetro lambda}
 
+\item{mu_alpha}{vetor de covariaveis px1}
+
 \item{b_alpha}{número inteiro positivo}
 
 \item{v_alpha}{número inteiro positivo, variância do parâmetro alpha}
+
+\item{mu_beta}{vetor de covariaveis px1}
 
 \item{b_beta}{número inteiro positivo}
 
 \item{v_beta}{número inteiro positivo, variância do parâmetro beta}
 
 \item{horizon}{número positivo, horizonte dos dados.}
-
-\item{PSI_alpha}{vetor de covariaveis px1}
-
-\item{PSI_beta}{vetor de covariaveis px1}
 }
 \description{
 Esta é a função para simular os dados a partir de um processo de Hawkes

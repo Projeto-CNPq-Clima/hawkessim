@@ -327,3 +327,4 @@ sintonizar=function(bar,taxa,tau,mat,i){
 
 
 }
+

@@ -6,10 +6,10 @@
 #' @param PSI_lambda vetor de covariaveis px1
 #' @param b_lambda número inteiro positivo
 #' @param v_lambda número inteiro positivo, variância do parâmetro lambda
-#' @param PSI_alpha vetor de covariaveis px1
+#' @param mu_alpha vetor de covariaveis px1
 #' @param b_alpha número inteiro positivo
 #' @param v_alpha número inteiro positivo, variância do parâmetro alpha
-#' @param PSI_beta vetor de covariaveis px1
+#' @param mu_beta vetor de covariaveis px1
 #' @param b_beta número inteiro positivo
 #' @param v_beta número inteiro positivo, variância do parâmetro beta
 #' @param horizon número positivo, horizonte dos dados.
