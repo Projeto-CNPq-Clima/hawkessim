@@ -21,7 +21,7 @@
 MCMChawkes<-function(point,xdata,xcov,iter=100000,bar=90000,pul=2,AMpri=matrix(rep(1,nrow(point)),ncol=1),BMpri=100*diag(1,nrow(point)),AQpri=matrix(rep(1,nrow(point)),ncol=1),BQpri=100*diag(1,nrow(point)),AW=as.matrix(rep(0,ncol(xcov))),BW=100*diag(1,ncol(xcov)),
                      avW=1,bvW=1,avM=1,bvM=1,avQ=1,bvQ=1,abW=.01,bbW=.01,abM=.01,bbM=.01,abQ=.01,bbQ=.01){
   x<-xdata
-  Xw<-xcov
+  Xw<-as.matrix(xcov)
   S=point
   n=nrow(S)
 
@@ -38,12 +38,48 @@ MCMChawkes<-function(point,xdata,xcov,iter=100000,bar=90000,pul=2,AMpri=matrix(r
 
   }
 
+
+if(ncol(Xw)==2){
+  Xw=cbind(1,Xw)
+}
+else{
+  if(ncol(Xw)==3){
+    if(sum(Xw[,1])!=nrow(Xw)){
+      print("The first intercept column of the xcov matrix must have all values equal to 1")
+    }
+    else{
+
+    }
+  }
+  else{
+    print("The number of columns must be 2 or 3 (with intercept)")
+  }
+}
+
+if(ncol(S)==2){
+  S=cbind(1,S)
+}
+else{
+  if(ncol(S)==3){
+    if(sum(S[,1])!=nrow(S)){
+      print("The first intercept column of the S matrix must have all values equal to 1")
+    }
+    else{
+
+    }
+  }
+  else{
+    print("The number of columns must be 2 or 3 (with intercept)")
+  }
+}
+
+
   #Parametros necessários com chutes iniciais
   W=rep(1,n)
   M=rep(1,n)
   Q=rep(1,n)
   fw=.5
-  PSI_lambda=rep(1,sqrt(n))
+  PSI_lambda=rep(1,3)
   b_lambda=1
   v_lambda=1
   fm=.5
@@ -52,7 +88,7 @@ MCMChawkes<-function(point,xdata,xcov,iter=100000,bar=90000,pul=2,AMpri=matrix(r
   fq=.5
   b_beta=1
   v_beta=1
-  uW=1
+  uW=uM=uQ=1
 
   aceitaW<-NULL
   matW<-NULL
@@ -79,7 +115,7 @@ MCMChawkes<-function(point,xdata,xcov,iter=100000,bar=90000,pul=2,AMpri=matrix(r
     if(j<=bar){
 
       #Para W
-      tempW=amostrarW(W,M,Q,Xw,x,fw,PSI_lambda,b_lambda,v_lambda,Xw[,-1])
+      tempW=amostrarW(W,M,Q,Xw,x,fw,PSI_lambda,b_lambda,v_lambda,S[,-1])
       W<-as.numeric(tempW[[1]])
       aceitaW<-c(aceitaW,tempW[[2]])
 
